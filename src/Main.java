@@ -50,6 +50,10 @@ public class Main extends Application {
 
     }
 
+    public static void openNewStage() {
+        DJStage newStage = new DJStage(root);
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

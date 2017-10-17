@@ -29,6 +29,7 @@ public class CommonControls {
         leftPane.getChildren().add(playlists);
 
         Button autoDJ = new Button("Auto-DJ");
+        autoDJ.setOnAction((ActionEvent ae) -> Main.openNewStage());
         leftPane.getChildren().add(autoDJ);
 
         leftPane.setAlignment(Pos.TOP_LEFT);
