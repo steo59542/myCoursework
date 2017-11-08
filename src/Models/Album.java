@@ -1,16 +1,16 @@
 package Models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Album {
 
     private int albumId;
     private int artistId;
     private String title;
-    private Date releaseDate;
+    private String releaseDate;
     private String albumArtworkFileName;
 
-    public Album(int albumId, int artistId, String title, Date releaseDate, String albumArtworkFileName) {
+    public Album(int albumId, int artistId, String title, String releaseDate, String albumArtworkFileName) {
         this.albumId = albumId;
         this.artistId = artistId;
         this.title = title;
@@ -42,11 +42,11 @@ public class Album {
         this.title = title;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 

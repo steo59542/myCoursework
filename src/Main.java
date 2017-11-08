@@ -1,15 +1,23 @@
+import Models.Album;
+import Models.AlbumService;
+import Models.DatabaseConnection;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 
 public class Main extends Application {
 
     public static BorderPane root;
+    public static DatabaseConnection database;
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        database = new DatabaseConnection("MusicPlayerDatabase.db");
 
         root = new BorderPane();
 
@@ -23,6 +31,18 @@ public class Main extends Application {
         root.setTop(CommonControls.toolbar());
         root.setBottom(CommonControls.playControls());
         root.setCenter(SongsScene.centreDisplay());
+
+
+
+        ArrayList<Album> testList = new ArrayList<>();
+
+        AlbumService.selectAll(testList, database);
+
+        for(Album a: testList){
+            System.out.println(a);
+        }
+
+
 
     }
 
