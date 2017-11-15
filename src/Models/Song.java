@@ -8,14 +8,16 @@ public class Song {
     private String title;
     private double length;
     private int bpm;
+    private String songFileName;
 
-    public Song(int songId, int genreId, int albumId, String title, double length, int bpm) {
+    public Song(int songId, int genreId, int albumId, String title, double length, int bpm, String songFileName) {
         this.songId = songId;
         this.genreId = genreId;
         this.albumId = albumId;
         this.title = title;
         this.length = length;
         this.bpm = bpm;
+        this.songFileName = songFileName;
     }
 
     public int getSongId() {
@@ -65,5 +67,11 @@ public class Song {
     public void setBpm(int bpm) {
         this.bpm = bpm;
     }
+
+    public String getSongFileName() {
+        return songFileName;
+    }
+
+    public void SetSongFileName(int bpm) { this.songFileName = songFileName; }
 
 }

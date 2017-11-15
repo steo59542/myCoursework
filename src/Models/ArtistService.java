@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PlaylistService {
+public class ArtistService {
 
-    public static void selectAll(List<Playlist> targetList, DatabaseConnection database) {
+    public static void selectAll(List<Artist> targetList, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("SELECT PlaylistID, Title FROM Genres ORDER BY PlaylistID");
+        PreparedStatement statement = database.newStatement("SELECT ArtistID, Name FROM Artists ORDER BY ArtistID");
 
         try {
             if (statement != null) {
@@ -18,7 +18,7 @@ public class PlaylistService {
 
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Playlist(results.getInt("PlaylistID"), results.getString("Name")));
+                        targetList.add(new Artist(results.getInt("ArtistID"), results.getString("Name")));
                     }
                 }
             }
@@ -28,11 +28,11 @@ public class PlaylistService {
     }
 
 
-    public static Playlist selectById(int id, DatabaseConnection database) {
+    public static Artist selectById(int id, DatabaseConnection database) {
 
-        Playlist result = null;
+        Artist result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT PlaylistID, Name FROM Playlists WHERE PlaylistID = ?");
+        PreparedStatement statement = database.newStatement("SELECT ArtistID, Name FROM Artists WHERE ArtistID = ?");
 
         try {
             if (statement != null) {
@@ -41,7 +41,7 @@ public class PlaylistService {
                 ResultSet results = database.runQuery(statement);
 
                 if (results != null) {
-                    result = new Playlist(results.getInt("PlaylistID"), results.getString("Name"));
+                    result = new Artist(results.getInt("ArtistID"), results.getString("Name"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -55,7 +55,7 @@ public class PlaylistService {
     @SuppressWarnings("Duplicates")
     public static void deleteById(int id, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("DELETE FROM Playlists WHERE PlaylistID = ?");
+        PreparedStatement statement = database.newStatement("DELETE FROM Artists WHERE ArtistID = ?");
 
         try {
             if (statement != null) {
@@ -68,21 +68,21 @@ public class PlaylistService {
     }
 
 
-    public static void save(Playlist itemToSave, DatabaseConnection database) {
+    public static void save(Artist itemToSave, DatabaseConnection database) {
 
-        Playlist existingItem = null;
-        if (itemToSave.getPlaylistId() != 0) existingItem = selectById(itemToSave.getPlaylistId(), database);
+        Artist existingItem = null;
+        if (itemToSave.getArtistId() != 0) existingItem = selectById(itemToSave.getArtistId(), database);
 
         try {
             if (existingItem == null) {
-                PreparedStatement statement = database.newStatement("INSERT INTO Playlists (Name) VALUES (?))");
+                PreparedStatement statement = database.newStatement("INSERT INTO Albums (Name) VALUES (?))");
                 statement.setString(1, itemToSave.getName());
                 database.executeUpdate(statement);
             }
             else {
-                PreparedStatement statement = database.newStatement("UPDATE Playlists SET Name = ?  WHERE PlaylistID = ?");
+                PreparedStatement statement = database.newStatement("UPDATE Artists SET Name = ?  WHERE AlbumID = ?");
                 statement.setString(1, itemToSave.getName());
-                statement.setInt(2, itemToSave.getPlaylistId());
+                statement.setInt(2, itemToSave.getArtistId());
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {

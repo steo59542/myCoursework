@@ -1,3 +1,6 @@
+package View;
+
+import Controller.MainController;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -8,28 +11,28 @@ import javafx.scene.layout.VBox;
 
 public class CommonControls {
 
-    static VBox sceneSelector() {
+    public static VBox sceneSelector(MainController controller) {
 
         VBox leftPane = new VBox(20);
 
         Button songs = new Button("Songs");
-        songs.setOnAction((ActionEvent ae) -> Main.showSongs());
+        songs.setOnAction((ActionEvent ae) -> controller.showSongs());
         leftPane.getChildren().add(songs);
 
         Button artist = new Button("Artist");
-        artist.setOnAction((ActionEvent ae) -> Main.showArtists());
+        artist.setOnAction((ActionEvent ae) -> controller.showArtists());
         leftPane.getChildren().add(artist);
 
         Button genre = new Button("Genre");
-        genre.setOnAction((ActionEvent ae) -> Main.showGenres());
+        genre.setOnAction((ActionEvent ae) -> controller.showGenres());
         leftPane.getChildren().add(genre);
 
         Button playlists = new Button("Playlists");
-        playlists.setOnAction((ActionEvent ae) -> Main.showPlaylists());
+        playlists.setOnAction((ActionEvent ae) -> controller.showPlaylists());
         leftPane.getChildren().add(playlists);
 
         Button autoDJ = new Button("Auto-DJ");
-        autoDJ.setOnAction((ActionEvent ae) -> Main.openNewStage());
+        autoDJ.setOnAction((ActionEvent ae) -> controller.openNewStage());
         leftPane.getChildren().add(autoDJ);
 
         leftPane.setAlignment(Pos.TOP_LEFT);
@@ -38,7 +41,7 @@ public class CommonControls {
 
     }
 
-    static MenuBar toolbar() {
+    public static MenuBar toolbar() {
 
         MenuBar myMenu = new MenuBar();
 
@@ -66,7 +69,7 @@ public class CommonControls {
 
     }
 
-    static VBox playControls() {
+    public static VBox playControls() {
 
         VBox bottomPane = new VBox(10);
 

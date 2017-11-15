@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PlaylistService {
+public class GenreService {
 
-    public static void selectAll(List<Playlist> targetList, DatabaseConnection database) {
+    public static void selectAll(List<Genre> targetList, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("SELECT PlaylistID, Title FROM Genres ORDER BY PlaylistID");
+        PreparedStatement statement = database.newStatement("SELECT GenreID, Title FROM Genres ORDER BY GenreID");
 
         try {
             if (statement != null) {
@@ -18,7 +18,7 @@ public class PlaylistService {
 
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Playlist(results.getInt("PlaylistID"), results.getString("Name")));
+                        targetList.add(new Genre(results.getInt("GenreID"), results.getString("Title")));
                     }
                 }
             }
@@ -28,11 +28,11 @@ public class PlaylistService {
     }
 
 
-    public static Playlist selectById(int id, DatabaseConnection database) {
+    public static Genre selectById(int id, DatabaseConnection database) {
 
-        Playlist result = null;
+        Genre result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT PlaylistID, Name FROM Playlists WHERE PlaylistID = ?");
+        PreparedStatement statement = database.newStatement("SELECT GenreID, Name FROM Genres WHERE GenreID = ?");
 
         try {
             if (statement != null) {
@@ -41,7 +41,7 @@ public class PlaylistService {
                 ResultSet results = database.runQuery(statement);
 
                 if (results != null) {
-                    result = new Playlist(results.getInt("PlaylistID"), results.getString("Name"));
+                    result = new Genre(results.getInt("GenreID"), results.getString("Title"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -55,7 +55,7 @@ public class PlaylistService {
     @SuppressWarnings("Duplicates")
     public static void deleteById(int id, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("DELETE FROM Playlists WHERE PlaylistID = ?");
+        PreparedStatement statement = database.newStatement("DELETE FROM Genres WHERE GenreID = ?");
 
         try {
             if (statement != null) {
@@ -68,21 +68,21 @@ public class PlaylistService {
     }
 
 
-    public static void save(Playlist itemToSave, DatabaseConnection database) {
+    public static void save(Genre itemToSave, DatabaseConnection database) {
 
-        Playlist existingItem = null;
-        if (itemToSave.getPlaylistId() != 0) existingItem = selectById(itemToSave.getPlaylistId(), database);
+        Genre existingItem = null;
+        if (itemToSave.getGenreId() != 0) existingItem = selectById(itemToSave.getGenreId(), database);
 
         try {
             if (existingItem == null) {
-                PreparedStatement statement = database.newStatement("INSERT INTO Playlists (Name) VALUES (?))");
-                statement.setString(1, itemToSave.getName());
+                PreparedStatement statement = database.newStatement("INSERT INTO Genres (Title) VALUES (?))");
+                statement.setString(1, itemToSave.getTitle());
                 database.executeUpdate(statement);
             }
             else {
-                PreparedStatement statement = database.newStatement("UPDATE Playlists SET Name = ?  WHERE PlaylistID = ?");
-                statement.setString(1, itemToSave.getName());
-                statement.setInt(2, itemToSave.getPlaylistId());
+                PreparedStatement statement = database.newStatement("UPDATE Genres SET Title = ?  WHERE GenreID = ?");
+                statement.setString(1, itemToSave.getTitle());
+                statement.setInt(2, itemToSave.getGenreId());
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {

@@ -51,7 +51,7 @@ public class AlbumService {
         return result;
     }
 
-
+    @SuppressWarnings("Duplicates")
     public static void deleteById(int id, DatabaseConnection database) {
 
         PreparedStatement statement = database.newStatement("DELETE FROM Albums WHERE AlbumID = ?");
@@ -82,7 +82,7 @@ public class AlbumService {
                 database.executeUpdate(statement);
             }
             else {
-                PreparedStatement statement = database.newStatement("UPDATE Table SET ArtistID = ?, ArtistID = ?, ReleaseDate = ?, AlbumArtworkFileName = ?  WHERE AlbumID = ?");
+                PreparedStatement statement = database.newStatement("UPDATE Albums SET ArtistID = ?, ArtistID = ?, ReleaseDate = ?, AlbumArtworkFileName = ?  WHERE AlbumID = ?");
                 statement.setInt(1, itemToSave.getArtistId());
                 statement.setString(2, itemToSave.getTitle());
                 statement.setString(3, itemToSave.getReleaseDate());
