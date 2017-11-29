@@ -19,13 +19,17 @@ public class CommonControls {
         songs.setOnAction((ActionEvent ae) -> controller.showSongs());
         leftPane.getChildren().add(songs);
 
-        Button artist = new Button("Artist");
-        artist.setOnAction((ActionEvent ae) -> controller.showArtists());
-        leftPane.getChildren().add(artist);
+        Button albums = new Button("Albums");
+        albums.setOnAction((ActionEvent ae) -> controller.showAlbums());
+        leftPane.getChildren().add(albums);
 
-        Button genre = new Button("Genre");
-        genre.setOnAction((ActionEvent ae) -> controller.showGenres());
-        leftPane.getChildren().add(genre);
+        Button artists = new Button("Artists");
+        artists.setOnAction((ActionEvent ae) -> controller.showArtists());
+        leftPane.getChildren().add(artists);
+
+        Button genres = new Button("Genres");
+        genres.setOnAction((ActionEvent ae) -> controller.showGenres());
+        leftPane.getChildren().add(genres);
 
         Button playlists = new Button("Playlists");
         playlists.setOnAction((ActionEvent ae) -> controller.showPlaylists());

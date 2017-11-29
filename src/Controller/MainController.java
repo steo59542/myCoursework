@@ -15,15 +15,15 @@ public class MainController {
         this.database = database;
     }
 
-    public void showPlaylists() {
-
-        root.setCenter(PlaylistScene.centreDisplay());
-
-    }
-
     public void showSongs() {
 
         root.setCenter(SongsScene.centreDisplay());
+
+    }
+
+    public void showAlbums() {
+
+        root.setCenter(AlbumScene.centreDisplay());
 
     }
 
@@ -36,6 +36,12 @@ public class MainController {
     public void showGenres() {
 
         root.setCenter(GenreScene.centreDisplay(database, root));
+
+    }
+
+    public void showPlaylists() {
+
+        root.setCenter(PlaylistScene.centreDisplay());
 
     }
 
