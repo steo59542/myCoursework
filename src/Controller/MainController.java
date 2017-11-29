@@ -35,7 +35,7 @@ public class MainController {
 
     public void showGenres() {
 
-        root.setCenter(GenreScene.centreDisplay());
+        root.setCenter(GenreScene.centreDisplay(database, root));
 
     }
 
