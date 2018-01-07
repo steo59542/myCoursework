@@ -48,8 +48,6 @@ public class Main extends Application {
             System.out.println(a);
         }
 
-
-
     }
 
         public static void main(String[] args) {

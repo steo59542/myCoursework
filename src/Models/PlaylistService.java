@@ -9,7 +9,7 @@ public class PlaylistService {
 
     public static void selectAll(List<Playlist> targetList, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("SELECT PlaylistID, Title FROM Genres ORDER BY PlaylistID");
+        PreparedStatement statement = database.newStatement("SELECT PlaylistID, Name FROM Playlists ORDER BY PlaylistID");
 
         try {
             if (statement != null) {
