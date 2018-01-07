@@ -23,13 +23,13 @@ public class MainController {
 
     public void showAlbums() {
 
-        root.setCenter(AlbumScene.centreDisplay());
+        root.setCenter(AlbumScene.centreDisplay(database, root));
 
     }
 
     public void showArtists() {
 
-        root.setCenter(ArtistScene.centreDisplay());
+        root.setCenter(ArtistScene.centreDisplay(database, root));
 
     }
 
@@ -41,7 +41,7 @@ public class MainController {
 
     public void showPlaylists() {
 
-        root.setCenter(PlaylistScene.centreDisplay());
+        root.setCenter(PlaylistScene.centreDisplay(database, root));
 
     }
 

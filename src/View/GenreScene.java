@@ -29,9 +29,9 @@ public class GenreScene {
         scrollPane.setContent(tilePane);
 
         for(Genre g: allTheGenres) {
-            Button exampleButton = new Button(g.toString());
-            exampleButton.setPrefSize(100, 100);
-            tilePane.getChildren().add(exampleButton);
+            Button genreButton = new Button(g.toString());
+            genreButton.setPrefSize(100, 100);
+            tilePane.getChildren().add(genreButton);
         }
 
         return scrollPane;

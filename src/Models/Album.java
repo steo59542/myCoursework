@@ -1,7 +1,5 @@
 package Models;
 
-import java.sql.Date;
-
 public class Album {
 
     private int albumId;
@@ -58,4 +56,8 @@ public class Album {
         this.albumArtworkFileName = albumArtworkFileName;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
 }
