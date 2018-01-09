@@ -8,11 +8,11 @@ import javafx.scene.layout.BorderPane;
 public class MainController {
 
     private BorderPane root;
-    private DatabaseConnection database;
+    public static DatabaseConnection database;
 
-    public MainController(BorderPane root, DatabaseConnection database) {
+    public MainController(BorderPane root) {
         this.root = root;
-        this.database = database;
+        database = new DatabaseConnection("MusicPlayerDatabase.db");
     }
 
     public void showSongs() {

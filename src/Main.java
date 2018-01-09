@@ -16,16 +16,16 @@ import java.util.ArrayList;
 public class Main extends Application {
 
     private static BorderPane root;
-    private static DatabaseConnection database;
+    //private static DatabaseConnection database;
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        database = new DatabaseConnection("MusicPlayerDatabase.db");
+//
 
         root = new BorderPane();
 
-        MainController controller = new MainController(root, database);
+        MainController controller = new MainController(root);
 
         Scene scene = new Scene(root, 1024, 768);
 
@@ -40,13 +40,12 @@ public class Main extends Application {
 
 
 
-        ArrayList<Album> testList = new ArrayList<>();
-
-        AlbumService.selectAll(testList, database);
-
-        for(Album a: testList){
-            System.out.println(a);
-        }
+        //ArrayList<Album> testList = new ArrayList<>();
+//        AlbumService.selectAll(testList, database);
+//
+//        for(Album a: testList){
+//            System.out.println(a);
+//        }
 
     }
 

@@ -1,5 +1,6 @@
 package View;
 
+import Controller.SongController;
 import Models.SongsView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +19,6 @@ public class SongsScene {
 
         songTable.setPrefWidth(330);
         songTable.setPrefHeight(500);
-
 
         TableColumn<SongsView, String> songNameColumn = new TableColumn<>("Song");
         songNameColumn.setCellValueFactory(new PropertyValueFactory<>("songTitle"));
@@ -61,6 +61,8 @@ public class SongsScene {
         releaseDateColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
         releaseDateColumn.setResizable(true);
         songTable.getColumns().add(releaseDateColumn);
+
+        songTable.setItems(SongController.loadAllSongsForTable());
 
         return songTable;
 

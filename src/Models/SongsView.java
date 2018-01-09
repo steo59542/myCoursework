@@ -1,5 +1,7 @@
 package Models;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class SongsView {
@@ -12,22 +14,24 @@ public class SongsView {
     private final SimpleStringProperty name;
     private final SimpleStringProperty albumTitle;
     private final SimpleStringProperty genreTitle;
-    private double length;
-    private int bpm;
+    private final SimpleDoubleProperty length;
+    private final SimpleIntegerProperty bpm;
     private final SimpleStringProperty releaseDate;
+    private String songFileName;
 
-    public SongsView(int songId, int genreId, int albumId, int artistId, SimpleStringProperty songTitle, SimpleStringProperty name, SimpleStringProperty albumTitle, SimpleStringProperty genreTitle, double length, int bpm, SimpleStringProperty releaseDate) {
+    public SongsView(int songId, int genreId, int albumId, int artistId, String songTitle, String name, String albumTitle, String genreTitle, double length, int bpm, String releaseDate, String songFileName) {
         this.songId = songId;
         this.genreId = genreId;
         this.albumId = albumId;
         this.artistId = artistId;
-        this.songTitle = songTitle;
-        this.name = name;
-        this.albumTitle = albumTitle;
-        this.genreTitle = genreTitle;
-        this.length = length;
-        this.bpm = bpm;
-        this.releaseDate = releaseDate;
+        this.songTitle = new SimpleStringProperty(songTitle);
+        this.name = new SimpleStringProperty(name);
+        this.albumTitle = new SimpleStringProperty(albumTitle);
+        this.genreTitle =  new SimpleStringProperty(genreTitle);
+        this.length = new SimpleDoubleProperty(length);
+        this.bpm  = new SimpleIntegerProperty(bpm);
+        this.releaseDate = new SimpleStringProperty(releaseDate);
+        this.songFileName = songFileName;
     }
 
     public int getSongId() {
@@ -111,19 +115,27 @@ public class SongsView {
     }
 
     public double getLength() {
+        return length.get();
+    }
+
+    public SimpleDoubleProperty lengthProperty() {
         return length;
     }
 
     public void setLength(double length) {
-        this.length = length;
+        this.length.set(length);
     }
 
     public int getBpm() {
+        return bpm.get();
+    }
+
+    public SimpleIntegerProperty bpmProperty() {
         return bpm;
     }
 
     public void setBpm(int bpm) {
-        this.bpm = bpm;
+        this.bpm.set(bpm);
     }
 
     public String getReleaseDate() {
@@ -136,5 +148,13 @@ public class SongsView {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate.set(releaseDate);
+    }
+
+    public String getSongFileName() {
+        return songFileName;
+    }
+
+    public void setSongFileName(String songFileName) {
+        this.songFileName = songFileName;
     }
 }
