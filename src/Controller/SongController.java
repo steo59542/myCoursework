@@ -1,8 +1,6 @@
 package Controller;
 
-import Models.Song;
-import Models.SongService;
-import Models.SongsView;
+import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,17 +18,26 @@ public class SongController {
 
         for (Song s: allTheSongs) {
 
+            Album album = AlbumService.selectById(s.getAlbumId(), MainController.database);
+            String albumTitle = album.getAlbumTitle();
+            String releaseDate = album.getReleaseDate();
+
+            Artist artist = ArtistService.selectById(album.getArtistId(), MainController.database);
+            String name = artist.getName();
+
+            String genreTitle = GenreService.selectById(s.getGenreId(), MainController.database).getGenreTitle();
+
             SongsView sv = new SongsView(s.getSongId(),
                     s.getGenreId(),
                     s.getAlbumId(),
-                    0,
-                    "a",
-                    "b",
-                    "c",
-                    "d",
+                    artist.getArtistId(),
+                    s.getSongTitle(),
+                    name,
+                    albumTitle,
+                    genreTitle,
                     s.getLength(),
                     s.getBpm(),
-                    "e",
+                    releaseDate,
                     s.getSongFileName());
 
             allTheSongViews.add(sv);

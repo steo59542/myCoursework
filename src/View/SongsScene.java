@@ -33,7 +33,7 @@ public class SongsScene {
         songTable.getColumns().add(artistNameColumn);
 
         TableColumn<SongsView, String> albumNameColumn = new TableColumn<>("Album");
-        albumNameColumn.setCellValueFactory(new PropertyValueFactory<>("albumName"));
+        albumNameColumn.setCellValueFactory(new PropertyValueFactory<>("albumTitle"));
         albumNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
         albumNameColumn.setResizable(true);
         songTable.getColumns().add(albumNameColumn);

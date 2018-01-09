@@ -32,7 +32,7 @@ public class GenreService {
 
         Genre result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT GenreID, Name FROM Genres WHERE GenreID = ?");
+        PreparedStatement statement = database.newStatement("SELECT GenreID, Title FROM Genres WHERE GenreID = ?");
 
         try {
             if (statement != null) {
