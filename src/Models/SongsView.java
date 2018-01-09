@@ -7,23 +7,27 @@ public class SongsView {
     private int songId;
     private int genreId;
     private int albumId;
-    private final SimpleStringProperty title;
+    private int artistId;
+    private final SimpleStringProperty songTitle;
+    private final SimpleStringProperty name;
+    private final SimpleStringProperty albumTitle;
+    private final SimpleStringProperty genreTitle;
     private double length;
     private int bpm;
-    private int artistId;
     private final SimpleStringProperty releaseDate;
-    private final SimpleStringProperty name;
 
-    public SongsView(int songId, int genreId, int albumId, SimpleStringProperty title, double length, int bpm, int artistId, SimpleStringProperty releaseDate, SimpleStringProperty name) {
+    public SongsView(int songId, int genreId, int albumId, int artistId, SimpleStringProperty songTitle, SimpleStringProperty name, SimpleStringProperty albumTitle, SimpleStringProperty genreTitle, double length, int bpm, SimpleStringProperty releaseDate) {
         this.songId = songId;
         this.genreId = genreId;
         this.albumId = albumId;
-        this.title = title;
+        this.artistId = artistId;
+        this.songTitle = songTitle;
+        this.name = name;
+        this.albumTitle = albumTitle;
+        this.genreTitle = genreTitle;
         this.length = length;
         this.bpm = bpm;
-        this.artistId = artistId;
         this.releaseDate = releaseDate;
-        this.name = name;
     }
 
     public int getSongId() {
@@ -50,16 +54,60 @@ public class SongsView {
         this.albumId = albumId;
     }
 
-    public String getTitle() {
-        return title.get();
+    public int getArtistId() {
+        return artistId;
     }
 
-    public SimpleStringProperty titleProperty() {
-        return title;
+    public void setArtistId(int artistId) {
+        this.artistId = artistId;
     }
 
-    public void setTitle(String title) {
-        this.title.set(title);
+    public String getSongTitle() {
+        return songTitle.get();
+    }
+
+    public SimpleStringProperty songTitleProperty() {
+        return songTitle;
+    }
+
+    public void setSongTitle(String songTitle) {
+        this.songTitle.set(songTitle);
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public String getAlbumTitle() {
+        return albumTitle.get();
+    }
+
+    public SimpleStringProperty albumTitleProperty() {
+        return albumTitle;
+    }
+
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle.set(albumTitle);
+    }
+
+    public String getGenreTitle() {
+        return genreTitle.get();
+    }
+
+    public SimpleStringProperty genreTitleProperty() {
+        return genreTitle;
+    }
+
+    public void setGenreTitle(String genreTitle) {
+        this.genreTitle.set(genreTitle);
     }
 
     public double getLength() {
@@ -78,14 +126,6 @@ public class SongsView {
         this.bpm = bpm;
     }
 
-    public int getArtistId() {
-        return artistId;
-    }
-
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
-    }
-
     public String getReleaseDate() {
         return releaseDate.get();
     }
@@ -96,17 +136,5 @@ public class SongsView {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate.set(releaseDate);
-    }
-
-    public String getName() {
-        return name.get();
-    }
-
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
     }
 }

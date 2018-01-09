@@ -3,11 +3,11 @@ package Models;
 public class Genre {
 
     private int genreId;
-    private String title;
+    private String genreTitle;
 
-    public Genre(int genreId, String title) {
+    public Genre(int genreId, String genreTitle) {
         this.genreId = genreId;
-        this.title = title;
+        this.genreTitle = genreTitle;
     }
 
     public int getGenreId() {
@@ -18,16 +18,16 @@ public class Genre {
         this.genreId = genreId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getGenreTitle() {
+        return genreTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setGenreTitle(String title) {
+        this.genreTitle = genreTitle;
     }
 
     @Override
     public String toString() {
-        return title;
+        return genreTitle;
     }
 }

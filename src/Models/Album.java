@@ -4,14 +4,14 @@ public class Album {
 
     private int albumId;
     private int artistId;
-    private String title;
+    private String albumTitle;
     private String releaseDate;
     private String albumArtworkFileName;
 
-    public Album(int albumId, int artistId, String title, String releaseDate, String albumArtworkFileName) {
+    public Album(int albumId, int artistId, String albumTitle, String releaseDate, String albumArtworkFileName) {
         this.albumId = albumId;
         this.artistId = artistId;
-        this.title = title;
+        this.albumTitle = albumTitle;
         this.releaseDate = releaseDate;
         this.albumArtworkFileName = albumArtworkFileName;
     }
@@ -32,12 +32,12 @@ public class Album {
         this.artistId = artistId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getAlbumTitle() {
+        return albumTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle = albumTitle;
     }
 
     public String getReleaseDate() {
@@ -58,6 +58,6 @@ public class Album {
 
     @Override
     public String toString() {
-        return title;
+        return albumTitle;
     }
 }

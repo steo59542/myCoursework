@@ -77,7 +77,7 @@ public class SongService {
                 PreparedStatement statement = database.newStatement("INSERT INTO Songs (GenreID, AlbumID, Title, Length, BPM, SongFileName) VALUES (?, ?, ?, ?, ?, ?))");
                 statement.setInt(1, itemToSave.getGenreId());
                 statement.setInt(2, itemToSave.getAlbumId());
-                statement.setString(3, itemToSave.getTitle());
+                statement.setString(3, itemToSave.getSongTitle());
                 statement.setDouble(4, itemToSave.getLength());
                 statement.setInt(5, itemToSave.getBpm());
                 statement.setString(6, itemToSave.getSongFileName());
@@ -87,7 +87,7 @@ public class SongService {
                 PreparedStatement statement = database.newStatement("UPDATE Albums SET GenreID = ?, AlbumID = ?, Title = ?, Length = ?, BPM = ?, SongFileName= ? WHERE SongID = ?");
                 statement.setInt(1, itemToSave.getGenreId());
                 statement.setInt(2, itemToSave.getAlbumId());
-                statement.setString(3, itemToSave.getTitle());
+                statement.setString(3, itemToSave.getSongTitle());
                 statement.setDouble(4, itemToSave.getLength());
                 statement.setInt(5, itemToSave.getBpm());
                 statement.setString(6, itemToSave.getSongFileName());

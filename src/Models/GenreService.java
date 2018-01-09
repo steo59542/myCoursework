@@ -76,12 +76,12 @@ public class GenreService {
         try {
             if (existingItem == null) {
                 PreparedStatement statement = database.newStatement("INSERT INTO Genres (Title) VALUES (?))");
-                statement.setString(1, itemToSave.getTitle());
+                statement.setString(1, itemToSave.getGenreTitle());
                 database.executeUpdate(statement);
             }
             else {
                 PreparedStatement statement = database.newStatement("UPDATE Genres SET Title = ?  WHERE GenreID = ?");
-                statement.setString(1, itemToSave.getTitle());
+                statement.setString(1, itemToSave.getGenreTitle());
                 statement.setInt(2, itemToSave.getGenreId());
                 database.executeUpdate(statement);
             }

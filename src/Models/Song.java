@@ -5,16 +5,16 @@ public class Song {
     private int songId;
     private int genreId;
     private int albumId;
-    private String title;
+    private String songTitle;
     private double length;
     private int bpm;
     private String songFileName;
 
-    public Song(int songId, int genreId, int albumId, String title, double length, int bpm, String songFileName) {
+    public Song(int songId, int genreId, int albumId, String songTitle, double length, int bpm, String songFileName) {
         this.songId = songId;
         this.genreId = genreId;
         this.albumId = albumId;
-        this.title = title;
+        this.songTitle = songTitle;
         this.length = length;
         this.bpm = bpm;
         this.songFileName = songFileName;
@@ -44,12 +44,12 @@ public class Song {
         this.albumId = albumId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSongTitle() {
+        return songTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSongTitle(String title) {
+        this.songTitle = songTitle;
     }
 
     public double getLength() {

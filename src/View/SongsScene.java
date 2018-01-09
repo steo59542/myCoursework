@@ -20,17 +20,47 @@ public class SongsScene {
         songTable.setPrefHeight(500);
 
 
-        TableColumn<SongsView, String> toppingNameColumn = new TableColumn<>("Title");
-        toppingNameColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        toppingNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.63));
-        toppingNameColumn.setResizable(false);
-        songTable.getColumns().add(toppingNameColumn);
+        TableColumn<SongsView, String> songNameColumn = new TableColumn<>("Song");
+        songNameColumn.setCellValueFactory(new PropertyValueFactory<>("songTitle"));
+        songNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
+        songNameColumn.setResizable(true);
+        songTable.getColumns().add(songNameColumn);
 
-        TableColumn<SongsView, String> toppingTypeColumn = new TableColumn<>("Type");
-        toppingTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        toppingTypeColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.31));
-        toppingTypeColumn.setResizable(false);
-        songTable.getColumns().add(toppingTypeColumn);
+        TableColumn<SongsView, String> artistNameColumn = new TableColumn<>("Artist");
+        artistNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        artistNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
+        artistNameColumn.setResizable(true);
+        songTable.getColumns().add(artistNameColumn);
+
+        TableColumn<SongsView, String> albumNameColumn = new TableColumn<>("Album");
+        albumNameColumn.setCellValueFactory(new PropertyValueFactory<>("albumName"));
+        albumNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
+        albumNameColumn.setResizable(true);
+        songTable.getColumns().add(albumNameColumn);
+
+        TableColumn<SongsView, String> lengthColumn = new TableColumn<>("Length");
+        lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
+        lengthColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
+        lengthColumn.setResizable(true);
+        songTable.getColumns().add(lengthColumn);
+
+        TableColumn<SongsView, String> genreNameColumn = new TableColumn<>("Genre");
+        genreNameColumn.setCellValueFactory(new PropertyValueFactory<>("genreTitle"));
+        genreNameColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
+        genreNameColumn.setResizable(true);
+        songTable.getColumns().add(genreNameColumn);
+
+        TableColumn<SongsView, String> bpmColumn = new TableColumn<>("BPM");
+        bpmColumn.setCellValueFactory(new PropertyValueFactory<>("bpm"));
+        bpmColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
+        bpmColumn.setResizable(true);
+        songTable.getColumns().add(bpmColumn);
+
+        TableColumn<SongsView, String> releaseDateColumn = new TableColumn<>("Release Date");
+        releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        releaseDateColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
+        releaseDateColumn.setResizable(true);
+        songTable.getColumns().add(releaseDateColumn);
 
         return songTable;
 

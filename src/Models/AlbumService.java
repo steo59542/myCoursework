@@ -76,7 +76,7 @@ public class AlbumService {
             if (existingItem == null) {
                 PreparedStatement statement = database.newStatement("INSERT INTO Albums (ArtistID, Title, ReleaseDate, AlbumArtworkFileName) VALUES (?, ?, ?))");
                 statement.setInt(1, itemToSave.getArtistId());
-                statement.setString(2, itemToSave.getTitle());
+                statement.setString(2, itemToSave.getAlbumTitle());
                 statement.setString(3, itemToSave.getReleaseDate());
                 statement.setString(4, itemToSave.getAlbumArtworkFileName());
                 database.executeUpdate(statement);
@@ -84,7 +84,7 @@ public class AlbumService {
             else {
                 PreparedStatement statement = database.newStatement("UPDATE Albums SET ArtistID = ?, ArtistID = ?, ReleaseDate = ?, AlbumArtworkFileName = ?  WHERE AlbumID = ?");
                 statement.setInt(1, itemToSave.getArtistId());
-                statement.setString(2, itemToSave.getTitle());
+                statement.setString(2, itemToSave.getAlbumTitle());
                 statement.setString(3, itemToSave.getReleaseDate());
                 statement.setString(4, itemToSave.getAlbumArtworkFileName());
                 statement.setInt(5, itemToSave.getAlbumId());
