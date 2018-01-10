@@ -4,9 +4,7 @@ import Controller.MainController;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 
 public class CommonControls {
@@ -75,37 +73,66 @@ public class CommonControls {
 
     public static VBox playControls() {
 
-        VBox bottomPane = new VBox(10);
+        VBox bottomPane = new VBox();
+
 
         HBox runTime = new HBox(20);
+        //runTime.setStyle("-fx-background-color: red;");
 
         Label time = new Label("This is the track time");
         runTime.getChildren().add(time);
 
         Slider scrubBar = new Slider();
         runTime.getChildren().add(scrubBar);
+        HBox.setHgrow(scrubBar, Priority.ALWAYS);
 
         bottomPane.getChildren().add(runTime);
 
+        HBox emptySpace = new HBox(10);
+        //emptySpace.setStyle("-fx-background-color: hotpink;");
 
         HBox trackControls = new HBox(10);
+        //trackControls.setStyle("-fx-background-color: cyan;");
         Button back = new Button("back");
         trackControls.getChildren().add(back);
-
+        trackControls.setAlignment(Pos.CENTER);
         Button play = new Button("play");
         trackControls.getChildren().add(play);
-
         Button forward = new Button("forward");
         trackControls.getChildren().add(forward);
 
+        HBox volumeControls = new HBox(10);
+        //volumeControls.setStyle("-fx-background-color: yellow;");
         Button mute = new Button("mute");
-        trackControls.getChildren().add(mute);
-
+        volumeControls.setAlignment(Pos.CENTER_RIGHT);
+        volumeControls.getChildren().add(mute);
         Slider volume = new Slider();
-        trackControls.getChildren().add(volume);
+        volumeControls.getChildren().add(volume);
 
-        bottomPane.getChildren().add(trackControls);
+        GridPane bottomControls = new GridPane();
+        GridPane.setHgrow(emptySpace, Priority.ALWAYS);
+        GridPane.setHgrow(trackControls, Priority.ALWAYS);
+        GridPane.setHgrow(volumeControls, Priority.ALWAYS);
 
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(33);
+        GridPane.setRowIndex(emptySpace, 0);
+        GridPane.setColumnIndex(emptySpace, 0);
+
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(34);
+        GridPane.setRowIndex(trackControls, 0);
+        GridPane.setColumnIndex(trackControls, 1);
+
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setPercentWidth(33);
+        GridPane.setRowIndex(volumeControls, 0);
+        GridPane.setColumnIndex(volumeControls, 2);
+
+        bottomControls.getColumnConstraints().addAll(col1,col2,col3);
+        bottomControls.getChildren().addAll(emptySpace, trackControls, volumeControls);
+
+        bottomPane.getChildren().add(bottomControls);
 
         bottomPane.setAlignment(Pos.CENTER);
         BorderPane.setAlignment(bottomPane, Pos.BOTTOM_CENTER);

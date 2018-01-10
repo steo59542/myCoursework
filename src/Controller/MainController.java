@@ -36,13 +36,13 @@ public class MainController {
 
     public void showGenres() {
 
-        root.setCenter(GenreScene.centreDisplay(database, root));
+        root.setCenter(GenreScene.centreDisplay(database, root, this));
 
     }
 
     public void showPlaylists() {
 
-        root.setCenter(PlaylistScene.centreDisplay(database, root));
+        root.setCenter(PlaylistScene.centreDisplay(database, root, this));
 
     }
 

@@ -36,8 +36,10 @@ public class ArtistScene {
         for (Artist a : allTheArtists) {
             Button artistButton = new Button(a.toString());
             artistButton.setPrefSize(100, 100);
-            artistButton.setOnAction((ActionEvent ae) -> controller.showSongs("WHERE ArtistId = " + a.getArtistId()));
-            System.out.println(a.getArtistId());
+            artistButton.setOnAction((ActionEvent ae) -> controller.showSongs(
+                    "WHERE AlbumId IN (SELECT AlbumId FROM Albums WHERE ArtistId = " + a.getArtistId() + ")")
+            );
+            //System.out.println(a.getArtistId());
             tilePane.getChildren().add(artistButton);
         }
 
