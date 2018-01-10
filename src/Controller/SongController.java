@@ -9,10 +9,10 @@ import java.util.List;
 
 public class SongController {
 
-    public static ObservableList<SongsView> loadAllSongsForTable() {
+    public static ObservableList<SongsView> loadSongsForTable(String whereClause) {
 
         List<Song> allTheSongs = new ArrayList<>();
-        SongService.selectAll(allTheSongs, MainController.database);
+        SongService.selectAll(allTheSongs, whereClause, MainController.database);
 
         List<SongsView> allTheSongViews = new ArrayList<>();
 

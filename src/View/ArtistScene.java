@@ -1,6 +1,8 @@
 package View;
 
+import Controller.MainController;
 import Models.*;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 
 public class ArtistScene {
 
-    public static ScrollPane centreDisplay(DatabaseConnection database, Pane root) {
+    public static ScrollPane centreDisplay(DatabaseConnection database, Pane root, MainController controller) {
 
         ArrayList<Artist> allTheArtists = new ArrayList<>();
         ArtistService.selectAll(allTheArtists, database);
@@ -34,6 +36,8 @@ public class ArtistScene {
         for (Artist a : allTheArtists) {
             Button artistButton = new Button(a.toString());
             artistButton.setPrefSize(100, 100);
+            artistButton.setOnAction((ActionEvent ae) -> controller.showSongs("WHERE ArtistId = " + a.getArtistId()));
+            System.out.println(a.getArtistId());
             tilePane.getChildren().add(artistButton);
         }
 

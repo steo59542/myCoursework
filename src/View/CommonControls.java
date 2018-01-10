@@ -16,7 +16,7 @@ public class CommonControls {
         VBox leftPane = new VBox(20);
 
         Button songs = new Button("Songs");
-        songs.setOnAction((ActionEvent ae) -> controller.showSongs());
+        songs.setOnAction((ActionEvent ae) -> controller.showSongs(""));
         leftPane.getChildren().add(songs);
 
         Button albums = new Button("Albums");

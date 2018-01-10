@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 
 public class SongsScene {
 
+    public static String songFilter = "";
+
     public static TableView centreDisplay() {
 
         TableView<SongsView> songTable = new TableView<SongsView>();
@@ -62,7 +64,9 @@ public class SongsScene {
         releaseDateColumn.setResizable(true);
         songTable.getColumns().add(releaseDateColumn);
 
-        songTable.setItems(SongController.loadAllSongsForTable());
+        //songTable.setItems(SongController.loadSongsForTable(""));
+
+        songTable.setItems(SongController.loadSongsForTable(songFilter));
 
         return songTable;
 

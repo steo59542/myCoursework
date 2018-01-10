@@ -7,9 +7,9 @@ import java.util.List;
 
 public class SongService {
 
-    public static void selectAll(List<Song> targetList, DatabaseConnection database) {
+    public static void selectAll(List<Song> targetList, String whereClause, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("SELECT SongID, GenreID, AlbumID, Title, Length, BPM, SongFileName FROM Songs ORDER BY SongID");
+        PreparedStatement statement = database.newStatement("SELECT SongID, GenreID, AlbumID, Title, Length, BPM, SongFileName FROM Songs " + whereClause + " ORDER BY SongID");
 
         try {
             if (statement != null) {

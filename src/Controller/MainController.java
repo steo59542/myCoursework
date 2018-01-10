@@ -15,21 +15,22 @@ public class MainController {
         database = new DatabaseConnection("MusicPlayerDatabase.db");
     }
 
-    public void showSongs() {
+    public void showSongs(String songFilter) {
 
+        SongsScene.songFilter = songFilter;
         root.setCenter(SongsScene.centreDisplay());
 
     }
 
     public void showAlbums() {
 
-        root.setCenter(AlbumScene.centreDisplay(database, root));
+        root.setCenter(AlbumScene.centreDisplay(database, root, this));
 
     }
 
     public void showArtists() {
 
-        root.setCenter(ArtistScene.centreDisplay(database, root));
+        root.setCenter(ArtistScene.centreDisplay(database, root, this));
 
     }
 
