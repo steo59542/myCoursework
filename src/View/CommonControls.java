@@ -1,6 +1,7 @@
 package View;
 
 import Controller.MainController;
+import Controller.SongController;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -95,9 +96,12 @@ public class CommonControls {
         //trackControls.setStyle("-fx-background-color: cyan;");
         Button back = new Button("back");
         trackControls.getChildren().add(back);
+
         trackControls.setAlignment(Pos.CENTER);
         Button play = new Button("play");
+        play.setOnAction((ActionEvent ae) -> SongController.playSong());
         trackControls.getChildren().add(play);
+
         Button forward = new Button("forward");
         trackControls.getChildren().add(forward);
 
@@ -106,6 +110,7 @@ public class CommonControls {
         Button mute = new Button("mute");
         volumeControls.setAlignment(Pos.CENTER_RIGHT);
         volumeControls.getChildren().add(mute);
+
         Slider volume = new Slider();
         volumeControls.getChildren().add(volume);
 
