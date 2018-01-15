@@ -2,6 +2,8 @@ package View;
 
 import Controller.MainController;
 import Controller.SongController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -9,6 +11,9 @@ import javafx.scene.layout.*;
 
 
 public class CommonControls {
+
+    public static Button play;
+    public static Slider volume;
 
     public static VBox sceneSelector(MainController controller) {
 
@@ -96,22 +101,28 @@ public class CommonControls {
         //trackControls.setStyle("-fx-background-color: cyan;");
         Button back = new Button("back");
         trackControls.getChildren().add(back);
+        back.setOnAction((ActionEvent ae) -> SongController.changeTrack(-1));
 
         trackControls.setAlignment(Pos.CENTER);
-        Button play = new Button("play");
+        play = new Button("play");
         play.setOnAction((ActionEvent ae) -> SongController.playSong());
         trackControls.getChildren().add(play);
 
         Button forward = new Button("forward");
         trackControls.getChildren().add(forward);
+        forward.setOnAction((ActionEvent ae) -> SongController.changeTrack(1));
 
         HBox volumeControls = new HBox(10);
         //volumeControls.setStyle("-fx-background-color: yellow;");
         Button mute = new Button("mute");
+        mute.setOnAction((ActionEvent ae) -> SongController.setVolume(0, true));
         volumeControls.setAlignment(Pos.CENTER_RIGHT);
         volumeControls.getChildren().add(mute);
 
-        Slider volume = new Slider();
+        volume = new Slider();
+        volume.valueProperty().addListener((ov, old_val, new_val) -> {
+            SongController.setVolume(new_val, false);
+        });
         volumeControls.getChildren().add(volume);
 
         GridPane bottomControls = new GridPane();

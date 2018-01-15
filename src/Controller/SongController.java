@@ -1,6 +1,8 @@
 package Controller;
 
 import Models.*;
+import View.CommonControls;
+import View.SongsScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
@@ -13,6 +15,32 @@ import java.util.List;
 public class SongController {
 
     public static MediaPlayer songPlayer = null;
+    public static boolean playing = false;
+
+    private static String songFilename = null;
+    private static long lastClick = 0;
+
+    public static void setSongFilename(String songFilename) {
+
+        long now = System.currentTimeMillis();
+        long delay = now - lastClick;
+
+        boolean playNow = false;
+
+        if (songFilename.equals(SongController.songFilename) && delay < 500) playNow = true;
+
+        SongController.songFilename = songFilename;
+
+        if (playNow) {
+            if (songPlayer != null) songPlayer.stop();
+            songPlayer = null;
+            playing = false;
+            playSong();
+        }
+
+        lastClick = now;
+
+    }
 
     public static ObservableList<SongsView> loadSongsForTable(String whereClause) {
 
@@ -53,23 +81,71 @@ public class SongController {
 
     }
 
-    public static void playSong()  {
+    public static void changeTrack(int direction) {
 
-        File songFile = new File("CourseworkSongs\\01 - speed trials.mp3");    // Music folder should be in project root, not in 'src'
-        if (songFile.isFile()) {
-            Media songMedia = new Media(songFile.toURI().toString());
-            songPlayer = new MediaPlayer(songMedia);
-            songPlayer.play();
-        } else {
-            System.out.println("File error.");
+        List<SongsView> songList = SongsScene.songTable.getItems();
+        int currentSong = SongsScene.songTable.getSelectionModel().getSelectedIndex();
+        if (currentSong == -1) return;
+        int requestedSong = currentSong + direction;
+        if (requestedSong < 0 || requestedSong > songList.size() - 1) return;
+        SongsScene.songTable.getSelectionModel().select(requestedSong);
+
+        if (playing) {
+            SongController.songFilename = SongsScene.songTable.getSelectionModel().getSelectedItem().getSongFileName();
+            if (songPlayer != null) songPlayer.stop();
+            songPlayer = null;
+            playing = false;
+            playSong();
         }
 
     }
 
+    public static void setVolume(Number v, boolean mute) {
+        if (mute) CommonControls.volume.setValue(0.0);
+        if (songPlayer != null) songPlayer.setVolume(v.doubleValue() / 100.0);
+    }
+
+    public static void playSong()  {
+
+        if (songFilename == null) {
+
+            System.out.println("No file selected!!");
+
+        } else {
+
+            if (playing) {
+
+                pauseSong();
+
+            } else {
+
+                if (songPlayer == null) { // PREPARE IF NEEDED
+                    File songFile = new File("CourseworkSongs/"+ songFilename);    // Music folder should be in project root, not in 'src'
+                    if (songFile.isFile()) {
+                        Media songMedia = new Media(songFile.toURI().toString());
+                        songPlayer = new MediaPlayer(songMedia);
+                    } else {
+                        System.out.println("File error.");
+                    }
+                }
+
+                if (songPlayer != null) { // PLAY
+                    songPlayer.setVolume(CommonControls.volume.getValue() / 100.0);
+                    songPlayer.play();
+                    playing = true;
+                    CommonControls.play.setText("pause");
+                }
+
+            }
+        }
+    }
+
     public static void pauseSong()  {
 
-        if (songPlayer != null) {
+        if (songPlayer != null) { // PAUSE
             songPlayer.pause();
+            playing = false;
+            CommonControls.play.setText("play");
         }
 
     }

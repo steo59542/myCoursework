@@ -14,10 +14,11 @@ import javafx.scene.layout.VBox;
 public class SongsScene {
 
     public static String songFilter = "";
+    public static TableView<SongsView> songTable;
 
     public static TableView centreDisplay() {
 
-        TableView<SongsView> songTable = new TableView<SongsView>();
+        songTable = new TableView<>();
 
         songTable.setPrefWidth(330);
         songTable.setPrefHeight(500);
@@ -63,6 +64,10 @@ public class SongsScene {
         releaseDateColumn.prefWidthProperty().bind(songTable.widthProperty().multiply(0.14));
         releaseDateColumn.setResizable(true);
         songTable.getColumns().add(releaseDateColumn);
+
+        songTable.setOnMouseClicked(ae -> SongController.setSongFilename(
+                songTable.getSelectionModel().getSelectedItem().getSongFileName()
+        ));
 
         //songTable.setItems(SongController.loadSongsForTable(""));
 

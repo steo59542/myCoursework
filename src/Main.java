@@ -38,7 +38,7 @@ public class Main extends Application {
         root.setBottom(CommonControls.playControls());
         root.setCenter(SongsScene.centreDisplay());
 
-
+        CommonControls.volume.setValue(50);
 
         //ArrayList<Album> testList = new ArrayList<>();
 //        AlbumService.selectAll(testList, database);
